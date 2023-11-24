@@ -9,8 +9,10 @@ from utils import *
 from model import GCNModel
 from opt import Optimizer
 import pandas as pd
+print("TensorFlow version:", tf.__version__)
 
 
+print("Starting the program...")
 def PredictScore(train_miR_tar_matrix, miR_matrix, tar_matrix, seed, epochs, emb_dim, dp, lr, adjdp):
     np.random.seed(seed)
     ops.reset_default_graph()
@@ -111,7 +113,7 @@ def cross_validation_experiment(miR_tar_matrix, miR_matrix, tar_matrix, seed, ep
 if __name__ == "__main__":
     miR_sim = np.loadtxt('data/mirna_sim.csv', delimiter=',')
     tar_sim = np.loadtxt('data/MTadj.csv', delimiter=',')
-    miR_tar_matrix = np.loadtxt('data/target_sim.csv', delimiter=',')
+    miR_tar_matrix = np.loadtxt('data/target_sim.csv', delimiter=',')[:, :290]
     epoch = 200
     emb_dim = 64
     lr = 0.01
